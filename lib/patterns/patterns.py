@@ -55,7 +55,7 @@ class Patterns():
                 frequent_patterns.add(seq[i: i + k])
 
         return frequent_patterns
-    
+
     def computing_frequencies(self, seq, k):
         frequency_array = []
         for i in range((4 ** k)):
@@ -65,3 +65,19 @@ class Patterns():
             j = self.pattern_to_number(pattern)
             frequency_array[j] += 1
         return frequency_array
+
+    """
+     Input: Two strings, Pattern and Genome.
+     Output: A collection of space-separated integers specifying all starting positions where Pattern appears
+     as a substring of Genome.
+    """
+
+    def pattern_matching(pattern, genome):
+        pattern_len = len(pattern)
+        patter_index = ""
+        max_limit = (len(genome) - pattern_len) + 1
+        for i in range(0, max_limit, 1):
+            if (genome[i:(i + pattern_len)] == pattern):
+                patter_index += " " + str(i)
+        return patter_index
+   
