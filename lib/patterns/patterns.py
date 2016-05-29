@@ -187,3 +187,28 @@ def approx_frequent_matching(pattern, genome, k):
         if (hamming_distance(genome[i:(i + pattern_len)], pattern) <= k):
             frequency += 1
     return frequency
+
+
+"""
+ Input: Genome.
+ Output: Array of patterns by replacing each nucleotide with remaining three. Except the last one. So the length output
+ array is (len(genome)-1)*3
+"""
+
+
+def immediate_neighbors(seq):
+    neighbors = []
+
+    for i in range(0, len(seq) - 1, 1):
+
+        for j in 'ATGC':
+            m_seq = seq
+            print seq[i], j
+            if seq[i] != j:
+                m_seq = list(m_seq)
+                m_seq[i] = j
+                m_seq = "".join(m_seq)
+
+                neighbors.append(m_seq)
+
+    return neighbors
