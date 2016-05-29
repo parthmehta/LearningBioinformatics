@@ -154,3 +154,36 @@ def hamming_distance(seq1, seq2):
         if (seq1[i] != seq2[i]):
             hamming_dist += 1
     return hamming_dist
+
+
+"""
+ Input: Two strings, Pattern and Genome.
+ Output: A collection of space-separated integers specifying all starting positions where Pattern and its k hamming distance patterns,
+ appears as a substring of Genome.
+"""
+
+
+def approx_pattern_matching(pattern, genome, k):
+    pattern_len = len(pattern)
+    patter_index = ""
+    max_limit = (len(genome) - pattern_len) + 1
+    for i in range(0, max_limit, 1):
+        if (hamming_distance(genome[i:(i + pattern_len)], pattern) <= k):
+            patter_index += " " + str(i)
+    return patter_index
+
+
+"""
+ Input: Two strings, Pattern and Genome.
+ Output: Frequency of  Pattern and its k hamming distance patterns.
+"""
+
+
+def approx_frequent_matching(pattern, genome, k):
+    pattern_len = len(pattern)
+    frequency = 0
+    max_limit = (len(genome) - pattern_len) + 1
+    for i in range(0, max_limit, 1):
+        if (hamming_distance(genome[i:(i + pattern_len)], pattern) <= k):
+            frequency += 1
+    return frequency
