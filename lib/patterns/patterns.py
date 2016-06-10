@@ -35,8 +35,8 @@ def complement(charcter):
 
 
 def count(seq, pattern):
-    pattern_len = len(pattern)
     count = 0
+    pattern_len = len(pattern)
     max_limit = (len(seq) - pattern_len) + 1
     for i in range(0, max_limit, 1):
         if (seq[i:(i + pattern_len)] == pattern):
@@ -52,21 +52,22 @@ def count(seq, pattern):
 
 def frequent_words(seq, k):
     frequent_patterns = set()
-    count = []
     max_count = 0
     max_patterns = len(seq) - k
-    for i in range(0, max_patterns, 1):
+    for i in range(0, max_patterns):
         pattern = seq[i:(i + k)]
-        count.append(count(seq, pattern))
+        pattern_count = count(seq, pattern)
         if (i == 0):
-            max_count = count[i]
+            max_count = pattern_count;
+            frequent_patterns.add(pattern);
         else:
-            if (max_count <= count[i]):
-                max_count = count[i]
-
-    for i in range(0, len(count)):
-        if (count[i] == max_count):
-            frequent_patterns.add(seq[i: i + k])
+            if (pattern_count > max_count):
+                max_count = pattern_count;
+                count_set = set([pattern]);
+            elif (pattern_count == 0):
+                continue;
+            elif (pattern_count == max_count):
+                count_set.add(pattern);
 
     return frequent_patterns
 
